@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
-import { set, z } from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,7 +20,7 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions/user.actions";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 
 
 
@@ -28,6 +28,7 @@ const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter()
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
+  // const user = await getLoggedInUser();
 
   const formSchema = authFormSchema(type)
   // 1. Define your form.
@@ -57,7 +58,7 @@ const AuthForm = ({ type }: { type: string }) => {
           email: data.email,
           password: data.password
         })
-        
+        if(response) router.push('/')
       }
     }catch (error){
       
@@ -118,7 +119,7 @@ const AuthForm = ({ type }: { type: string }) => {
               <CustomInput control={form.control} name={'email'} label={'Email'} placeholder={'Enter your email'}/>
               <CustomInput control={form.control} name={'password'} label={'Password'} placeholder={'Please enter your password'}/>
               <div className="flex flex-col gap-4">
-              <Button type="submit" className="form-btn" disabled={isLoading}>
+              <Button type="submit" disabled={isLoading} className="form-btn">
                 {isLoading ? (
                   <>
                     <Loader2 size={20} className="animate-spin" /> &nbsp;
@@ -133,7 +134,7 @@ const AuthForm = ({ type }: { type: string }) => {
                 <p> {type === "sign-in" ? "Don't have an account?": "Already have an account?"}
 
                 </p>
-                <Link href={type === 'sign-in' ? '/sign-up' : 'sign-in'} className="form-link">
+                <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className="form-link">
                   {type === 'sign-in' ? 'Sign up' : 'Sign in'}
                 </Link>
           </footer>
