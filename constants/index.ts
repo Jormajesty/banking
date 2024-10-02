@@ -34,7 +34,7 @@ export const TEST_ACCESS_TOKEN =
 
 export const ITEMS = [
   {
-    id: "6624c02e00367128945e", // appwrite item Id
+    id: "66a2f200001913192eab", // appwrite item Id
     accessToken: "access-sandbox-83fd9200-0165-4ef8-afde-65744b9d1548",
     itemId: "VPMQJKG5vASvpX8B6JK3HmXkZlAyplhW3r9xm",
     userId: "6627ed3d00267aa6fa3e",
@@ -126,6 +126,12 @@ export const transactionCategoryStyles = {
     borderColor: "border-[#12B76A]",
     backgroundColor: "bg-[#12B76A]",
     textColor: "text-[#027A48]",
+    chipBackgroundColor: "bg-[#ECFDF3]",
+  },
+  Travel: {
+    borderColor: "border-[#0047AB]",
+    backgroundColor: "bg-blue-500",
+    textColor: "text-blue-700",
     chipBackgroundColor: "bg-[#ECFDF3]",
   },
   default: {
